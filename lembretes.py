@@ -5,6 +5,8 @@ import requests
 import discord
 from discord.ext  import commands, tasks
 
+TOKEN=''
+
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
 
@@ -13,6 +15,7 @@ def log_command(ctx):
 def get_hms():
     dt = datetime.datetime.now()
     return f'{dt.hour}:{dt.minute}:{dt.second}'
+
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -34,6 +37,7 @@ async def on_message(message):
         )
         await message.delet()
     await bot.process_commands(message)
+
 
 
 #commands
@@ -89,4 +93,4 @@ async def current_time():
 
 
 if __name__ == "__main__":
-    bot.run("OTg5NzIyNjg0MDU5NDQzMjYw.Ga2wWk.UJOzfx6P4eUB4vpcautdkaf3-YR4ia7uarPF_w")
+    bot.run("write here the bot token")
