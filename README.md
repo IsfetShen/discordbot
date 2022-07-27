@@ -7,6 +7,9 @@ Primeiramente, é necessário usar "!" antes de cada um dos comandos, abaixo seg
 -"!oi": o bot te cumprimenta;
 -"!calcular":o bot cálcula algarismos;
 -"!agenda": o bot puxa um arquivo de texto exclusivo do usuário e diz oq está escrito nele, tudo na DM;
--"!anotar": anota algo; escreva oq vc quer anotar após o comanto, exatamente assim:
-""!anotar anotação""
+-"!anotar": anota algo; escreva oq vc quer anotar após o comando, exatamente assim:
+"!anotar anotação"
 -"!clear": limpa as mensagens do chat (por enquanto só está disponível para adm)
+
+# Adicione meu bot no seu servidor:
+https://discord.com/api/oauth2/authorize?client_id=989722684059443260&permissions=8&scope=bot
