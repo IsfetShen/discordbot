@@ -5,10 +5,9 @@ import requests
 import discord
 from discord.ext  import commands, tasks
 
-TOKEN=''
-
-bot= commands.Bot("!")
-leader_list = ['H. Wilson#6897']
+TOKEN="WRITE_HERE_YOUR_BOT_TOKEN"
+bot= commands.Bot("YOUR_BOT_PREFIX")
+leader_list = ["YOUR_USERNAME"]
 
 def log_command(ctx):
     print(f'{ctx.author} used "{ctx.message.content}" in the channel #{ctx.channel} at {get_hms()}')
@@ -93,4 +92,4 @@ async def current_time():
 
 
 if __name__ == "__main__":
-    bot.run("write here the bot token")
+    bot.run(TOKEN)
