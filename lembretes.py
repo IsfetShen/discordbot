@@ -5,7 +5,7 @@ import requests
 import discord
 from discord.ext  import commands, tasks
 
-TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.G6hXAW.NIKt8XyKghXbgq47KZskYy0OsbDOl--lF4pQ4k"
+TOKEN="INSERT_TOKER_HERE"
 
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
@@ -77,11 +77,6 @@ async def clear_command(ctx, count):
             await ctx.channel.purge(limit=int(count)+1)
         elif int(count) > 50:
             await ctx.channel.send('Eu posso limpar até 50 mensagens só!')
-
-@bot.command(name="lembrar") 
-async def lembrar(ctx):
-        with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "r") as texto:
-            await ctx.author.send(f"Não esqueça de fazer seus \n{texto.read()}")
 
 #tasks
 @tasks.loop(hours=2)
