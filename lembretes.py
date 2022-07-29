@@ -5,16 +5,16 @@ import requests
 import discord
 from discord.ext  import commands, tasks
 
-TOKEN="WRITE_HERE_YOUR_BOT_TOKEN"
-bot= commands.Bot("YOUR_BOT_PREFIX")
-leader_list = ["YOUR_USERNAME"]
+TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.G6hXAW.NIKt8XyKghXbgq47KZskYy0OsbDOl--lF4pQ4k"
+
+bot= commands.Bot("!")
+leader_list = ['H. Wilson#6897']
 
 def log_command(ctx):
     print(f'{ctx.author} used "{ctx.message.content}" in the channel #{ctx.channel} at {get_hms()}')
 def get_hms():
     dt = datetime.datetime.now()
     return f'{dt.hour}:{dt.minute}:{dt.second}'
-
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -36,7 +36,6 @@ async def on_message(message):
         )
         await message.delet()
     await bot.process_commands(message)
-
 
 
 #commands
@@ -64,14 +63,12 @@ async def agenda(ctx):
 
 @bot.command(name="anotar")
 async def anotar(ctx):
-    f"'{ctx.message.content}',"
     try:
         with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "w") as texto:
-            texto.write(f"{ctx.message.content}")
-            texto.close()
+            content= ctx.message.content
+            texto.write(content.split("anotar")[1])
     except AttributeError:
-        await ctx.send(f"Por algum motivo, a anotação não pôde ser realizada, por favor, tire print e envie ao dono do canal.")
-
+        await ctx.send("Por algum motivo, a anotação não pôde ser realizada, por favor, tire print e envie ao dono do canal.")
 
 @bot.command(name='clear')
 async def clear_command(ctx, count):
@@ -80,6 +77,11 @@ async def clear_command(ctx, count):
             await ctx.channel.purge(limit=int(count)+1)
         elif int(count) > 50:
             await ctx.channel.send('Eu posso limpar até 50 mensagens só!')
+
+@bot.command(name="lembrar") 
+async def lembrar(ctx):
+        with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "r") as texto:
+            await ctx.author.send(f"Não esqueça de fazer seus \n{texto.read()}")
 
 #tasks
 @tasks.loop(hours=2)
