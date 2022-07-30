@@ -5,7 +5,7 @@ import requests
 import discord
 from discord.ext  import commands, tasks
 
-TOKEN="INSERT_TOKER_HERE"
+TOKEN="INSERT_YOUR_BOT_TOKEN_HERE"
 
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
@@ -52,6 +52,13 @@ async def  calculate_expression(ctx, *expression):
     response= eval(expression)
     await ctx.send("A resposta é: " + str (response))
 
+
+@bot.command(name="add")
+async def add(ctx):
+        with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "a") as texto:
+            content= (ctx.message.content.split("add")[1])
+            texto.write(f"{content}\n")
+
 @bot.command(name="agenda")
 async def agenda(ctx):
     try:
@@ -60,15 +67,6 @@ async def agenda(ctx):
     except FileNotFoundError:
         with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "x") as texto:
             await ctx.author.send("Arquivo vazio, criando um")
-
-@bot.command(name="anotar")
-async def anotar(ctx):
-    try:
-        with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "w") as texto:
-            content= ctx.message.content
-            texto.write(content.split("anotar")[1])
-    except AttributeError:
-        await ctx.send("Por algum motivo, a anotação não pôde ser realizada, por favor, tire print e envie ao dono do canal.")
 
 @bot.command(name='clear')
 async def clear_command(ctx, count):
@@ -85,7 +83,6 @@ async def current_time():
     now = now.strftime("%d/%m/%Y às %H:%M:%S")
     channel = bot.get_channel(995894787330809876)
     await channel.send("Data atual: " + now)
-
 
 
 if __name__ == "__main__":
