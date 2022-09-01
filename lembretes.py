@@ -4,7 +4,11 @@ from datetime import datetime
 from asyncio import tasks
 from discord.ext  import commands, tasks
 
+<<<<<<< HEAD
 TOKEN="TOKEN_HERE"
+=======
+TOKEN="INSERT_TOKEN_HERE"
+>>>>>>> 7b69d6f3df994c29565c2c3779aaaebd2a38e7b0
 
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
