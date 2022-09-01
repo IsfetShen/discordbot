@@ -4,7 +4,7 @@ from datetime import datetime
 from asyncio import tasks
 from discord.ext  import commands, tasks
 
-TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.GF5SFC.9eh-rSD9ynf6tYZysEvnr0bBwVhjtpPfF0Wpts"
+TOKEN="TOKEN_HERE"
 
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
@@ -44,13 +44,13 @@ async def  calculate_expression(ctx, *expression):
 async def anotar(ctx):
         with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "w") as texto:
             content= ctx.message.content
-            texto.write(content.split("anotar")[1])
+            texto.write(content.split("write")[1])
 
 @bot.command(name="add")
 async def add(ctx):
         with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "a") as texto:
-            content= (ctx.message.content.split("add")[1])
-            texto.write(f"{content}\n")
+                content= (ctx.message.content.split("add")[1])
+                texto.write(f"""{content}\n \n""")
 
 @bot.command(name="read")
 async def agenda(ctx):
