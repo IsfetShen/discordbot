@@ -1,11 +1,10 @@
-import asyncio
+import discord
+import requests
 from datetime import datetime
 from asyncio import tasks
-import requests
-import discord
 from discord.ext  import commands, tasks
 
-TOKEN="INSERT_YOUR_BOT_TOKEN_HERE"
+TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.GF5SFC.9eh-rSD9ynf6tYZysEvnr0bBwVhjtpPfF0Wpts"
 
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
@@ -26,32 +25,26 @@ async def on_command_error(ctx, error):
 async def on_ready():
     print(f"Estou pronto! Estou conectado como {bot.user}")
     current_time.start()
-@bot.event
-async def on_message(message):
-    if  message.author == bot.user:
-        return
-    if "palavrão" in message.content:
-        await message.channel.send(
-            f"Por favor, {message.author.name}, não ofenda os demais usuários!"
-        )
-        await message.delet()
-    await bot.process_commands(message)
-
 
 #commands
-@bot.command(name="oi")
+@bot.command(name="hello")
 async def send_hello(ctx):
-    autor= ctx.author.name
-    response = "Olá, " + autor
+    autor=  ctx.author.name
+    response = "Hello, " + autor
     await ctx.send(response)
 
-@bot.command(name="calcular")
+@bot.command(name="calcule")
 async def  calculate_expression(ctx, *expression):
     expression = "".join(expression)
     print(expression)
     response= eval(expression)
     await ctx.send("A resposta é: " + str (response))
 
+@bot.command(name="write")
+async def anotar(ctx):
+        with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "w") as texto:
+            content= ctx.message.content
+            texto.write(content.split("anotar")[1])
 
 @bot.command(name="add")
 async def add(ctx):
@@ -59,7 +52,7 @@ async def add(ctx):
             content= (ctx.message.content.split("add")[1])
             texto.write(f"{content}\n")
 
-@bot.command(name="agenda")
+@bot.command(name="read")
 async def agenda(ctx):
     try:
         with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "r") as texto:
@@ -83,7 +76,6 @@ async def current_time():
     now = now.strftime("%d/%m/%Y às %H:%M:%S")
     channel = bot.get_channel(995894787330809876)
     await channel.send("Data atual: " + now)
-
 
 if __name__ == "__main__":
     bot.run(TOKEN)
