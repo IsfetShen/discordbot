@@ -1,17 +1,15 @@
-import discord
-import requests
-from datetime import datetime
+from datetime import datetime as dt
 from asyncio import tasks
 from discord.ext  import commands, tasks
+import time
 
-TOKEN="INSERT_TOKEN_HERE"
+TOKEN="INSERT_YOUR_TOKER_HERE"
 bot= commands.Bot("!")
 leader_list = ['H. Wilson#6897']
 
 def log_command(ctx):
     print(f'{ctx.author} used "{ctx.message.content}" in the channel #{ctx.channel} at {get_hms()}')
 def get_hms():
-    dt = datetime.datetime.now()
     return f'{dt.hour}:{dt.minute}:{dt.second}'
 
 @bot.event
@@ -28,9 +26,7 @@ async def on_ready():
 #commands
 @bot.command(name="hello")
 async def send_hello(ctx):
-    autor=  ctx.author.name
-    response = "Hello, " + autor
-    await ctx.send(response)
+    await ctx.send("Hello" +(ctx.author.name))
 
 @bot.command(name="calcule")
 async def  calculate_expression(ctx, *expression):
@@ -68,10 +64,17 @@ async def clear_command(ctx, count):
         elif int(count) > 50:
             await ctx.channel.send('Eu posso limpar até 50 mensagens só!')
 
+@bot.command(name="repeat")
+async def repeat(ctx):
+    m= (ctx.message.content.split("repeat")[1])
+    time.sleep(int(m))
+    with open(f"{ctx.author.name}#{ctx.author.discriminator}.txt", "r") as texto:
+        await ctx.author.send(f"Não esqueça:\n{texto.read()}")
+
 #tasks
 @tasks.loop(hours=2)
 async def current_time():
-    now = datetime.now()
+    now = dt.now()
     now = now.strftime("%d/%m/%Y às %H:%M:%S")
     channel = bot.get_channel(995894787330809876)
     await channel.send("Data atual: " + now)

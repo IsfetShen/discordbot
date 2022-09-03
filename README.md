@@ -9,7 +9,7 @@ Primeiramente, é necessário usar "!" antes de cada um dos comandos, abaixo seg
 -"!read": o bot puxa um arquivo de texto exclusivo do usuário e diz oq está escrito nele, tudo na DM;
 -"!write": anota algo; escreva oq vc quer anotar após o comanto. ATENÇÃO: se já existir uma anotação, ela será substituída COMPLETAMENTE pela nova
 -"!clear": limpa as mensagens do chat (só está disponível para eu mesmo)
--"remind": lembra vc de certa coisa em x tempo
 -"add": adiciona uma anotação ao arquivo já existente.
+-"repeat": reenvia a lista de anotações em quantos segundos o user escolher
 # Adicione meu bot no seu servidor:
 https://discord.com/api/oauth2/authorize?client_id=989722684059443260&permissions=8&scope=bot
