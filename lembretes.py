@@ -4,7 +4,7 @@ from discord.ext  import commands, tasks
 import time
 import discord
 
-TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.G01JgN.Ce8vNEec19HXhL-tzD0FDHXYVrWsX3FO0odxxE"
+TOKEN="TOKEN"
 intents = discord.Intents(messages=True, guilds=True, typing=True)
 bot = commands.Bot(command_prefix='!', intents=intents)
 leader_list = ['H. Wilson#6897']
