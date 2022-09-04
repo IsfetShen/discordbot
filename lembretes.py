@@ -2,9 +2,11 @@ from datetime import datetime as dt
 from asyncio import tasks
 from discord.ext  import commands, tasks
 import time
+import discord
 
-TOKEN="INSERT_YOUR_TOKER_HERE"
-bot= commands.Bot("!")
+TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.G01JgN.Ce8vNEec19HXhL-tzD0FDHXYVrWsX3FO0odxxE"
+intents = discord.Intents(messages=True, guilds=True, typing=True)
+bot = commands.Bot(command_prefix='!', intents=intents)
 leader_list = ['H. Wilson#6897']
 
 def log_command(ctx):
@@ -26,7 +28,7 @@ async def on_ready():
 #commands
 @bot.command(name="hello")
 async def send_hello(ctx):
-    await ctx.send("Hello" +(ctx.author.name))
+    await ctx.send("Hello " +(ctx.author.name))
 
 @bot.command(name="calcule")
 async def  calculate_expression(ctx, *expression):
