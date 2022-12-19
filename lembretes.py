@@ -1,10 +1,11 @@
-from datetime import datetime as dt
+import datetime 
+import discord
+import time
+from datetime import timezone, datetime as dt, timedelta
 from asyncio import tasks
 from discord.ext  import commands, tasks
-import time
-import discord
 
-TOKEN="TOKEN"
+TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.G5eY26.hvMhUE_iWGTh0tYlJDx3tXXF0xiymMQ-Vx9Fe4"
 intents = discord.Intents(messages=True, guilds=True, typing=True)
 bot = commands.Bot(command_prefix='!', intents=intents)
 leader_list = ['H. Wilson#6897']
@@ -75,11 +76,15 @@ async def repeat(ctx):
 
 #tasks
 @tasks.loop(hours=2)
-async def current_time():
-    now = dt.now()
-    now = now.strftime("%d/%m/%Y às %H:%M:%S")
+async def current_time(): 
+    diferença = timedelta(hours=-3)
+    fuso_brasília= timezone(diferença)
+    atual= dt.now()
+    datetime_sp= atual.astimezone(fuso_brasília)
+    datetime_text= datetime_sp.strftime('%d:%m:%Y as %H:%M')
     channel = bot.get_channel(995894787330809876)
-    await channel.send("Data atual: " + now)
+    await channel.send("Data atual: " + datetime_text)
+
 
 if __name__ == "__main__":
     bot.run(TOKEN)
