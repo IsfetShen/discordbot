@@ -5,7 +5,7 @@ from datetime import timezone, datetime as dt, timedelta
 from asyncio import tasks
 from discord.ext  import commands, tasks
 
-TOKEN="OTg5NzIyNjg0MDU5NDQzMjYw.G5eY26.hvMhUE_iWGTh0tYlJDx3tXXF0xiymMQ-Vx9Fe4"
+TOKEN="TOKEN"
 intents = discord.Intents(messages=True, guilds=True, typing=True)
 bot = commands.Bot(command_prefix='!', intents=intents)
 leader_list = ['H. Wilson#6897']
